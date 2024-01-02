@@ -1836,6 +1836,7 @@ def expect_verify(x, y, n):
 ## Compute steady-state moments
 def get_moments(y, moments):
     # Function to compute the moments of the ground state PDF (about the mean)
+    # Here, the moments array can be defined by the user as required (i.e., for nth order moments)
 
     # Initialization
     moment_vals = []

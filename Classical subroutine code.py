@@ -53,6 +53,7 @@ from paddle_quantum.linalg import dagger
 
 ## Implementation of the classical subroutine
 ## Note: This constructs the Hermitian form of the Fokker-Planck matrix and defines additional functions for subsequent analysis of the zeromode
+## Note: In what follows, the parameter 'c' corresponds to the parameter 'b' in the main text and SM file. 
 
 """
 Purpose:

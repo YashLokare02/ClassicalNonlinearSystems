@@ -1874,7 +1874,7 @@ weight = np.arange(3 * rank, 0, -3).astype('complex128')
 print('The selected weight is:')
 print(weight)
 
-# Set circuit parameters
+# Set circuit parameters (circuit depth can be set by the user as required)
 num_qubits = int(np.log2(dimension))
 depth = 70 # circuit depth
 
@@ -1943,6 +1943,7 @@ class VQSVD():
         return self.cir_V.unitary_matrix()
 
     # Train the VQSVD network
+    # Here, we use the Adam optimizer for classical optimization of the parameters
     def train(self):
         loss_list, singular_value_list = [], []
         optimizer = paddle.optimizer.Adam(learning_rate=self.lr, parameters=self.cir_W.parameters()+self.cir_V.parameters())

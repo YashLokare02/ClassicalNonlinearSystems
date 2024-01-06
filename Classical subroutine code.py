@@ -1,3 +1,5 @@
+## Authors: Dingding Wei and Yash Lokare
+
 ## Import relevant libraries
 
 import numpy as np

@@ -3,7 +3,7 @@ This repository contains code to implement the classical (construction of the He
 
 **Authors**: Y. Lokare, D. Wei, L. Chan, B. Rubenstein, and J. B. Marston. 
 
-The following versions of Qiskit software are needed to run simulations: 
+The following versions of Qiskit software are needed to run numerical simulations: 
 a) qiskit-terra: 0.24.0;
 b) qiskit-aer: 0.12.0;
 c) qiskit-ibmq-provider: 0.20.2;

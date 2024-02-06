@@ -1849,6 +1849,16 @@ def get_moments(y, moments):
 
     return moment_vals
 
+## Function to compute the steady-state expectation value of the FPE operator 
+def get_expectation(matrix, zeromode):
+    # Function to compute the steady-state expectation value 
+    # Here, the variable 'matrix' denotes the FPE operator matrix
+
+    value = np.dot(matrix, zeromode)
+    expectation_value = np.dot(np.transpose(zeromode), value)
+
+    return expectation_value
+
 ## Function to generate arrays containing relevant values (for steady-state PDF plots on a log scale)
 def cutoff_graph(x, y, y_cutoff):
     # Function to obtain the bounded x and y values (PDF on the log scale)

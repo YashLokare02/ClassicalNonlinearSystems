@@ -1868,6 +1868,20 @@ def cutoff_graph(x, y, y_cutoff):
 
     return x_values, y_values
 
+## Function to compute the maximas in the PDF
+def get_maxima(x, y):
+    # Function to compute the maximas in the PDF (only positive side; distributions are symmetric about x = 0)
+
+    # Extract the relevant region of the PDF
+    x_positive = [x_val for x_val in x if x_val >= 0]
+    y_positive = [y_val for x_val, y_val in zip(x, y) if x_val >= 0]
+
+    # Determine the maxima(s)
+    max_idx = np.argmax(y_positive)
+    x_max = x_positive[max_idx]
+
+    return x_max
+
 ## Implementation of VQSVD
 ## Ref.: Wang, X. et al. Quantum 5, 483 (2021)
 

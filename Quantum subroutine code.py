@@ -1883,6 +1883,38 @@ def get_maxima(x, y):
 
     return x_max
 
+def get_plot(classical_expectation, quantum_expectation):
+    # Function to generate scatter plots that compare the expectation values of x^2
+    # classical_expectation --- contains the value of <x^2> obtained via exact diagonalization
+    # quantum_expectation --- contains values of <x^2> obtained via the implementation of QPE + VQSVD
+
+    # Create tick labels for the x-axis
+    tick_labels = ['No DD', 'Hahn-X', 'Hahn-Y', 'CP', 'CPMG', 'XYXY', 'YZYZ', 'XZXZ', 'CDD', 'XY8', 'XY16', 'Uhrig-X', \
+                   'Uhrig-Y', 'KDD']
+
+    # Setting plot dimensions (and resolution)
+    f = plt.figure(dpi = 600)
+    f.set_figwidth(15)
+    f.set_figheight(4)
+
+    # Set custom tick labels
+    plt.xticks(range(len(tick_labels)), tick_labels)
+
+    # Plot 
+    plt.scatter(range(len(tick_labels)), quantum_expectation, marker = 'D', color = 'blue', label = 'VQSVD results')
+    plt.scatter(range(len(tick_labels)), [classical_expectation] * len(tick_labels), marker = 'o', \
+                color = 'red', label = 'Classical result')
+
+    plt.xlabel('DD sequences', fontsize = 17)
+    plt.ylabel(r"$\langle x^2 \rangle$", fontsize = 17)
+    plt.title('COMPARISON BETWEEN THE VALUES OF' r'$~\langle x^2 \rangle$', fontsize = 15)
+
+    plt.legend(loc = 'center') # to be set by the user, as desired
+    plt.grid(True) # add grid lines
+
+    # Display plot
+    plt.show()
+
 ## Implementation of VQSVD
 ## Ref.: Wang, X. et al. Quantum 5, 483 (2021)
 

@@ -1,5 +1,5 @@
 # Classical Nonlinear Systems
-This repository contains code to implement the classical (construction of the Hermitian form of the Fokker-Planck operator matrix) and quantum (QPE + DD + VQSVD) subroutines for the paper ***Steady-State Statistics of Classical Nonlinear Dynamical Systems from Noisy Intermediate-Scale Quantum Devices***. 
+This repository contains code to implement the classical (construction of the Hermitian form of the Fokker-Planck operator matrix) and quantum (QPE + VQSVD) subroutines for the paper ***Steady-State Statistics of Classical Nonlinear Dynamical Systems from Noisy Intermediate-Scale Quantum Devices***. 
 
 **Authors**: Y. M. Lokare, D. Wei, L. Chan, B. M. Rubenstein, and J. B. Marston. 
 

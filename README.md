@@ -10,3 +10,5 @@ c) qiskit-ibmq-provider: 0.20.2;
 d) qiskit: 0.43.0. 
 
 We use the ***poetry*** package management system to manage all package dependencies. 
+
+**Note**: The DD analysis and/or results contained in this repository are irrelevant for the present study. 

@@ -1258,6 +1258,9 @@ def qpe_implementation_DD(A, U, zeromode_classic, num_precision_qubits, num_quer
     qpe_without_DD(circuit, precision_qubits, query_qubits, U, angles = None, control_unitary = True, \
                    with_inverse_barriers = True, measure = True)
 
+    # Circuit depth
+    circuit_depth = circuit.depth()
+
     # Get the backend
     if use_noisy_backend: # if True, use the noisy IBMQ backend
         backend = provider.get_backend('ibm_brisbane') # note: can be set by the user as required
@@ -1727,7 +1730,7 @@ def qpe_implementation_DD(A, U, zeromode_classic, num_precision_qubits, num_quer
     # Compute the similarity between the classical zeromode and the one obtained using SVD
     similarity_score = get_similarity(zeromode_classic, zeromode_qpe, runit = runit)
 
-    return U, result, counts, time, phases_actual, eigenvalues, qpe_eigenvalues, hermitian_eigenvalues, min_eigenvalue, phases_qpe, \
+    return U, result, counts, time, circuit_depth, phases_actual, eigenvalues, qpe_eigenvalues, hermitian_eigenvalues, min_eigenvalue, phases_qpe, \
     zeromode_qpe, zeromode_qpe_sign, zeromode_prob, hit_rate, overlap, similarity_score
 
 ## Error analysis (classical vs. quantum zeromodes)

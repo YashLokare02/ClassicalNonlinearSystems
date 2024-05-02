@@ -2058,3 +2058,27 @@ def training_svd(matrix, weights, num_qubits, depth, rank, lr, itr, seed):
         zeromode_prob.append(abs(val) ** 2) # absolute square of the amplitudes
 
     return U_learned, V_dagger_learned, zeromode_trained_svd, zeromode_prob, singular_value_list, loss_list
+
+## The code below generates QPE circuit layouts on the IBMQ Brisbane backend
+def generate_layout(U, num_precision_qubits, num_query_qubits, optimization_level):
+    # Function to generate the QPE circuit layout on the IBMQ Brisbane backend (or any other backend for that matter)
+
+    # Get qubit arrays
+    precision_qubits, query_qubits = get_qubits(num_precision_qubits, num_query_qubits)
+    total_qubits = num_precision_qubits + num_query_qubits
+
+    # Construct the classical and quantum registers for QPE
+    cr = ClassicalRegister(total_qubits)
+    qr = QuantumRegister(total_qubits)
+    circuit = QuantumCircuit(qr, cr) # construct the skeletal structure of the QPE circuit
+
+    # Apply QPE to the circuit
+    qpe_without_DD(circuit, precision_qubits, query_qubits, U, angles = None, control_unitary = True, \
+                   with_inverse_barriers = True, measure = True)
+
+    # Get the backend and transpile the QPE circuit on it
+    backend = provider.get_backend('ibm_brisbane') 
+    transpiled_circuit = transpile(circuit, backend = backend, optimization_level = optimization_level)
+
+    # Plot the QPE circuit layout on the IBMQ backend
+    plot_circuit_layout(transpiled_circuit, backend, view = 'physical') # visualization of the physical qubit mapping; alsp possible is 'virtual'

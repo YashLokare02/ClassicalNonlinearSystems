@@ -32,6 +32,7 @@ from qiskit.transpiler.exceptions import TranspilerError
 from math import fsum
 from scipy.optimize import minimize
 from qiskit.transpiler import PassManager, InstructionDurations
+from qiskit.visualization import plot_gate_map, plot_error_map, plot_circuit_layout
 from qiskit.converters import circuit_to_dag, dag_to_circuit
 from qiskit.dagcircuit import DAGCircuit
 from qiskit.providers.models import BackendConfiguration
@@ -1244,6 +1245,7 @@ def qpe_implementation_DD(A, U, zeromode_classic, num_precision_qubits, num_quer
     # use_noisy_backend -> if True, run the circuit on the IBMQ backend; else, use QASM simulator
     # make_even -> if True, set all odd orders of the Hermite polynomials to zero
     # runit -> rounding off precision
+    # Note: To generate the QPE circuit layout (when transpiled on the IBMQ Brisbane backend), use plot_circuit_layout
 
      # Get the arrays containing all precision and query qubits
     precision_qubits, query_qubits = get_qubits(num_precision_qubits, num_query_qubits)

@@ -11,6 +11,7 @@ from scipy.stats import skew, kurtosis
 from scipy.optimize import curve_fit
 from scipy.linalg import norm
 import matplotlib.pyplot as plt
+import seaborn as sns
 import math
 import itertools
 from collections import Counter
@@ -2082,3 +2083,15 @@ def generate_layout(U, num_precision_qubits, num_query_qubits, optimization_leve
 
     # Plot the QPE circuit layout on the IBMQ backend
     plot_circuit_layout(transpiled_circuit, backend, view = 'physical') # visualization of the physical qubit mapping; alsp possible is 'virtual'
+
+    ## The code below generates heatmap plots to visualize the sparsity of the non-Hermitian (bare) FPE operator
+    # Compute the evenized form of the non-Hermitian FPE operator
+    op_nonhermitian = make_operator_even(op_nonhermitian)
+
+    # Create axes for heatmap plot
+    fig, ax = plt.subplots()
+    ax2 = sns.heatmap(op_nonhermitian, linewidth = 0.5, cmap = 'seismic')
+    ax.set_axis_off()
+
+    # Show the plot
+    plt.show()

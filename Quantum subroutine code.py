@@ -2086,7 +2086,7 @@ def generate_layout(U, num_precision_qubits, num_query_qubits, optimization_leve
 
 ## The code below generates heatmap plots to visualize the sparsity of the non-Hermitian (bare) FPE operator
 # Compute the evenized form of the non-Hermitian FPE operator
-op_nonhermitian = make_operator_even(op_nonhermitian)
+op_nonhermitian = make_operator_even(op_nonhermitian) # do this if required, will become relevant in some cases
 
 # Create axes for heatmap plot
 fig, ax = plt.subplots()

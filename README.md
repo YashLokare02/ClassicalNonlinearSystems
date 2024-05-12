@@ -9,6 +9,8 @@ The following versions of Qiskit software are needed to run numerical simulation
 - qiskit-ibmq-provider: 0.20.2
 - qiskit: 0.43.0
 
+Version of Paddle Quantum required to run numerical simulations: **2.4.0**; refer [PaddleQuantum](https://github.com/PaddlePaddle/Quantum) for more details. 
+
 We use the ***poetry*** package management system to manage all package dependencies. 
 
 **Note**: The DD analysis and/or results contained in this repository are irrelevant for the present study. 

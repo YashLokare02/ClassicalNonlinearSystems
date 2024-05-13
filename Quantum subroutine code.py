@@ -2095,3 +2095,15 @@ ax.set_axis_off()
 
 # Show the plot
 plt.show()
+
+## The code below plots the layout of the VQSVD ansatz
+# Initialize the circuit
+cir = Circuit(num_qubits) # num_qubits depends on the rank of the matrix for which we seek a decomposition
+
+# Add relevant gates 
+cir.ry() # add RY rotation gates
+cir.rz() # add RZ rotation gates
+cir.cnot() # add CNOT entangling gates
+
+# Visualization
+cir.plot()

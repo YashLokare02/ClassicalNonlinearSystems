@@ -7,7 +7,7 @@ import scipy.linalg as la
 import scipy.spatial as spat
 from scipy.stats import unitary_group
 from scipy.stats import moment
-from scipy.stats import skew, kurtosis
+from scipy.stats import skew, kurtosis, pearsonr
 from scipy.optimize import curve_fit
 from scipy.linalg import norm
 import matplotlib.pyplot as plt
@@ -1888,6 +1888,38 @@ def get_maxima(x, y):
     x_max = x_positive[max_idx]
 
     return x_max
+
+## Function to compute the Pearson correlation coefficient (and corresponding p-value)
+# Note: Correlation analysis between the classical and quantum zeromode(s)
+def get_coefficient(zeromode_classical, zeromode_quantum):
+    
+    # Generate arrays
+    zeromode_classical = np.array(zeromode_classical).flatten()
+    zeromode_quantum = np.array(zeromode_quantum).flatten() 
+    
+    # Compute the Pearson correlation coefficient and p-value
+    coefficient, p_value = pearsonr(zeromode_classical, zeromode_quantum)
+    
+    return coefficient, p_value
+
+## Function to generate a regression plot (for correlation analysis)
+def get_plot(zeromode_classical, zeromode_quantum):
+    
+    # Compute the Pearson correlation coefficient
+    coefficient, _ = get_coefficient(zeromode_classical, zeromode_quantum)
+    
+    # Plot
+    plt.figure(dpi = 600)
+    sns.regplot(x = zeromode_classical, y = zeromode_quantum, ci = None, line_kws = {"color": "red"})
+    plt.title(f'Pearson correlation coefficient: {coefficient:.2f}', fontsize = 15)
+    plt.xlabel('Classical zeromode', fontsize = 17)
+    plt.ylabel('Quantum zeromode', fontsize = 17)
+    
+    # Add grid lines
+    plt.grid(True)
+    
+    # Show the plot
+    plt.show()
 
 def get_plot(classical_expectation, quantum_expectation):
     # Function to generate scatter plots that compare the expectation values of x^2

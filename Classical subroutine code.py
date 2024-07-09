@@ -216,7 +216,7 @@ def f(N,n):
     return 0.5*( np.sqrt(n*(n-1))*delta(N,n-2) + delta(N,n) - np.sqrt((n+1)*(n+2))*delta(N,n+2))
 
 def g(N,n, L):
-    return 0.5*L**2*( np.sqrt(n*(n-1))*delta(N,n-2) - (2*n+1)*delta(N,n) + np.sqrt((n+1)*(n+2))*delta(N,n+2))
+    return (0.5/L**2)*( np.sqrt(n*(n-1))*delta(N,n-2) - (2*n+1)*delta(N,n) + np.sqrt((n+1)*(n+2))*delta(N,n+2))
 
 def t(N, n, L):
     val1 = np.sqrt(n*(n-1)*(n-2)*(n-3))*delta(N, n-4)
@@ -225,7 +225,7 @@ def t(N, n, L):
     val4 = -2*n*np.sqrt((n+1)*(n+2))*delta(N, n+2)
     val5 = -1*np.sqrt((n+1)*(n+2)*(n+3)*(n+4))*delta(N, n+4)
 
-    return 1/(4*L**2)*( val1 + val2 + val3 + val4 + val5 )
+    return (L**2/4)*( val1 + val2 + val3 + val4 + val5 )
 
 def element_perturbed(N, n, L, a, c, gamma):
     ## Function to compute the matrix elements of the finite truncated matrix for the FPE operator (in the Hermite basis)
@@ -259,10 +259,10 @@ def state_n(nmax, x0, L):
     states = np.zeros(nmax + 1)
     x = x0*L
 
-    states[0] = np.sqrt(L*np.sqrt(1/np.pi))* 1.0 * np.exp(-x**2/2)
+    states[0] = np.sqrt(np.sqrt(1/np.pi)/L)* 1.0 * np.exp(-x**2/2)
 
     if nmax > 0:
-        states[1] = np.sqrt(L*np.sqrt(1/np.pi))* (1/np.sqrt(2)) * 2.0 * x * np.exp(-(x**2)/2)
+        states[1] = np.sqrt(np.sqrt(1/np.pi)/L)* (1/np.sqrt(2)) * 2.0 * x * np.exp(-(x**2)/2)
 
     for ni in range(2, nmax + 1):
         states[ni] = ((np.sqrt(2)*x) / np.sqrt(ni))*states[ni-1] - (ni-1)/np.sqrt((ni)*(ni-1))*states[ni-2]

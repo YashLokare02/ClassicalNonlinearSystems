@@ -1812,18 +1812,29 @@ def get_pdf(n, x, dx, L, shift, zeromode_qpe, normalize = True, make_even = Fals
     return x0, y
 
 ## Compute expectation values
-def get_expectation(x, y):
-    # Function to compute the expectation value of x and using the estimated ground state PDF
-    # Note: Ground state PDF already normalized
-
-    # Calculate expectation values
-    expectation_x, expectation_x_square = 0, 0
-
-    for x_val, pdf in zip(x, y):
-        expectation_x += x_val * pdf
-        expectation_x_square += x_val**2 * pdf
-
-    return expectation_x, expectation_x_square
+def compute_expectation_x_squared(x, y):
+    """
+    Computes the expectation value of x^2 using numerical integration.
+    
+    Parameters:
+    x (array-like): Discrete values of x.
+    y (array-like): Corresponding values of the probability density function (PDF) at x.
+    
+    Returns:
+    float: The expectation value of x^2.
+    """
+    # Ensure x and y are numpy arrays
+    x = np.array(x)
+    y = np.array(y)
+    
+    # Compute x^2
+    x_squared = x ** 2
+    
+    # Compute the expectation value using the trapezoidal rule
+    # E[x^2] = integral(x^2 * y dx)
+    expectation_x_squared = np.trapz(x_squared * y, x)
+    
+    return expectation_x_squared
 
 def expect_verify(x, y, n):
     # Function to verify if all odd order moments of the ground state PDF (symmetric about 0) vanish

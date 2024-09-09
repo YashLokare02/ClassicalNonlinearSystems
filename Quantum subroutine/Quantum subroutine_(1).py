@@ -31,6 +31,7 @@ from qiskit.providers.aer import AerSimulator
 # Qiskit Runtime
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Session, Options
 from qiskit_algorithms import VQE, NumPyMinimumEigensolver
+from qiskit_algorithms.utils import algorithms_global
 from qiskit.circuit.library import RealAmplitudes, EfficientSU2
 from qiskit_algorithms.optimizers import SPSA, SLSQP, SNOBFIT, IMFIL, COBYLA, BOBYQA
 import numpy as np
@@ -918,6 +919,7 @@ def run_vqe(matrix, iteration):
 
     # Initialize the optimizer and the initial point
     np.random.seed(6)
+    algorithms_global.random_seed = 6 
     initial_point = np.random.uniform(-np.pi, np.pi, ansatz.num_parameters)
 
     # Initializing the estimator

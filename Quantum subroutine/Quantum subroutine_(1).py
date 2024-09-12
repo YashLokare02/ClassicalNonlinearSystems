@@ -50,7 +50,7 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 # For VQE
 from qiskit.circuit import QuantumCircuit, Parameter
-from qiskit.primitives import Sampler, Estimator
+from qiskit.primitives import Estimator as EstimatorOld
 from qiskit.quantum_info.operators import Operator
 from qiskit.circuit.library import RealAmplitudes, TwoLocal, EfficientSU2
 from qiskit_algorithms.optimizers import *
@@ -893,7 +893,7 @@ def qpe_implementation_DD(A, U, zeromode_classic, num_precision_qubits, num_quer
 
 ## VQE implementation
 
-def run_vqe(matrix, iteration):
+def run_vqe(matrix, iteration, noise = False):
     # Function to run the VQE algorithm
 
     # For the 6 x 6 case, do the following:
@@ -923,7 +923,10 @@ def run_vqe(matrix, iteration):
     initial_point = np.random.uniform(-np.pi, np.pi, ansatz.num_parameters)
 
     # Initializing the estimator
-    estimator = Estimator()
+    if noise is False:
+        estimator = EstimatorOld() # noiseless Estimator
+    else:
+        estimator = Estimator()
 
     # For noisy experiments, instantiate the Estimator with the 'backend' option (and import relevant backend configurations)
     # Also, initialize Options() as follows:
@@ -971,7 +974,7 @@ def run_vqe(matrix, iteration):
     final_circuit = ansatz.assign_parameters(optimal_params)
     zeromode_vqe = Statevector.from_instruction(final_circuit)
 
-    return result.optimal_value, zeromode_vqe
+    return sol.eigenvaiue, result.optimal_value, zeromode_vqe
 
 ### Computing Hermitian deviation of the zeromode and relative errors in <x^2>
 

@@ -21,3 +21,19 @@ The following versions of Qiskit software are needed to run numerical simulation
 - qiskit-algorithms: 0.3.0
 
 We use the ***poetry*** package management system to manage all package dependencies. 
+
+## Citation
+
+Cite this paper as follows: 
+
+```
+@misc{lokare2024steadystatestatisticsclassicalnonlinear,
+      title={Steady-State Statistics of Classical Nonlinear Dynamical Systems from Noisy Intermediate-Scale Quantum Devices}, 
+      author={Yash M. Lokare and Dingding Wei and Lucas Chan and Brenda M. Rubenstein and J. B. Marston},
+      year={2024},
+      eprint={2409.06036},
+      archivePrefix={arXiv},
+      primaryClass={quant-ph},
+      url={https://arxiv.org/abs/2409.06036}, 
+}
+```

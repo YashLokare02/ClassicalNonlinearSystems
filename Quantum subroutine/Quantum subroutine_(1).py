@@ -934,6 +934,7 @@ def run_vqe(matrix, iteration, noise = False):
     # options.optimization_level = '' # set the optimization level
     # options.resilience_level = '' # set the resilience level; depending on error mitigation protocol to be employed
     # options.execution.shots = '' # set the number of measurement shots to be executed
+    # options.seed_simulator = '' # set the random seed for the simulator
 
     # Note: resilience_level = 2 switches on ZNE and readout error mitigation
     #       resilience_level = 1 switches on TREX

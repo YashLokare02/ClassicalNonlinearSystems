@@ -824,13 +824,15 @@ def qpe_implementation_DD(A, U, zeromode_classic, num_precision_qubits, num_quer
         backend = Aer.get_backend('qasm_simulator') # to run noiseless simulations, import Aer (might need to downgrade the Qiskit version)
 
     if noise:
+        # Run the QPE simulation
         pass_manager = generate_preset_pass_manager(backend = backend, optimization_level = optimization_level, seed_transpiler = 1)
         isa_qc = pass_manager.run(circuit)
-
-        sampler = samplerV2(backend = backend)
-        job = sampler.run([(isa_qc,)], shots = shots)
-        counts = job.result()[0].data.meas.get_counts()
-
+        
+        # Run the QPE simulation
+        job = backend.run(isa_qc, shots = shots)
+        result = job.result()
+        counts = result.get_counts(isa_qc)
+        
     else:
         # Transpile and execute the circuit on the backend (might need to downgrade the Qiskit version)
         circuit = transpile(circuit, backend = backend, optimization_level = optimization_level, \
